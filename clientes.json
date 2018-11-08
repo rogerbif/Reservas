@@ -1,0 +1,24 @@
+[
+    {
+        "IdCliente": "1",
+        "Nome": "Teste 1",
+        "Cpf": "99999999999",
+        "Endereco": "Rua Teste, 123",
+        "Telefone": "51981223721",
+        "SituacaoCliente": "A",
+        "DataCadastro": "01012001",
+        "DataAtualizado": "01012001",
+        "EmDebito": "N"
+    },
+    {
+        "IdCliente": "2",
+        "Nome": "Teste 2",
+        "Cpf": "99999999999",
+        "Endereco": "Rua Belem 345",
+        "Telefone": "51981223721",
+        "SituacaoCliente": "A",
+        "DataCadastro": "01012001",
+        "DataAtualizado": "01012001",
+        "EmDebito": "N"
+    }
+]
