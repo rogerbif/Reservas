@@ -20,5 +20,27 @@
         "DataCadastro": "01012001",
         "DataAtualizado": "01012001",
         "EmDebito": "N"
+    },
+    {
+        "IdCliente": "",
+        "Nome": "Claudio",
+        "Cpf": "999999999",
+        "Endereco": "teste",
+        "Telefone": "teste",
+        "SituacaoCliente": "",
+        "DataCadastro": "",
+        "DataAtualizado": "",
+        "EmDebito": ""
+    },
+    {
+        "IdCliente": "",
+        "Nome": "Antonio",
+        "Cpf": "999999999",
+        "Endereco": "teste",
+        "Telefone": "",
+        "SituacaoCliente": "",
+        "DataCadastro": "",
+        "DataAtualizado": "",
+        "EmDebito": ""
     }
 ]

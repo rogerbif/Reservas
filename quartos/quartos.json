@@ -1,0 +1,14 @@
+[
+    {
+        "IdQuarto": "1",
+        "Numero": "1",
+        "Situacao": "0",
+        "ValorDiaria": "150,00"
+    },
+    {
+        "IdQuarto": "2",
+        "Numero": "2",
+        "Situacao": "0",
+        "ValorDiaria": "200,00"
+    }
+]
