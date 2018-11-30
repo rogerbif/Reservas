@@ -36,7 +36,17 @@ function find( $table = null, $id = null ) {
 			$sql = "SELECT * FROM " . $table;		    
 			$result = $database->query($sql);		    		    
 			if ($result->num_rows > 0) {
+<<<<<<< HEAD
 				$found = $result->fetch_all(MYSQLI_ASSOC);	        	        	    
+=======
+				$found = $result->fetch_all(MYSQLI_ASSOC);	        	        
+
+				/* Metodo alternativo	        
+				$found = array();		        
+				while ($row = $result->fetch_assoc()) {	          
+				array_push($found, $row);       
+				} */		    
+>>>>>>> master
 			}		  
 		}		
 	} catch (Exception $e) {		  
@@ -161,6 +171,7 @@ function remove($table = null, $id = null) {
         $_SESSION['type'] = 'danger';
     }
     close_database($database);
+<<<<<<< HEAD
 }
 
 function InsertClient() {
@@ -175,3 +186,6 @@ function InsertClient() {
     close_database($database);
 }
 ?>
+=======
+}
+>>>>>>> master

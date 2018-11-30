@@ -1,9 +1,16 @@
 <?php
+<<<<<<< HEAD
 $table = 'cliente';
 require_once('functions.php');
 require_once('config.php');	
 require_once(DBAPI);
 InClient();
+=======
+$table = 'registros';
+require_once('functions.php');
+require_once('config.php');	
+require_once(DBAPI);
+>>>>>>> master
 index($table);
 ?>
 <!DOCTYPE html>

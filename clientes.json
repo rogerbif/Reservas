@@ -1,8 +1,14 @@
 [
     {
+<<<<<<< HEAD
         "ID": "1",
         "Nome": "Carlos Antonio",
         "CPF": "99999999999",
+=======
+        "IdCliente": "1",
+        "Nome": "Carlos Antonio",
+        "Cpf": "99999999999",
+>>>>>>> master
         "Endereco": "Rua Teste, 123",
         "Telefone": "51981223721",
         "Situacao": "A",
