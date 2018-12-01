@@ -36,17 +36,7 @@ function find( $table = null, $id = null ) {
 			$sql = "SELECT * FROM " . $table;		    
 			$result = $database->query($sql);		    		    
 			if ($result->num_rows > 0) {
-<<<<<<< HEAD
-				$found = $result->fetch_all(MYSQLI_ASSOC);	        	        	    
-=======
-				$found = $result->fetch_all(MYSQLI_ASSOC);	        	        
-
-				/* Metodo alternativo	        
-				$found = array();		        
-				while ($row = $result->fetch_assoc()) {	          
-				array_push($found, $row);       
-				} */		    
->>>>>>> master
+				$found = $result->fetch_all(MYSQLI_ASSOC);
 			}		  
 		}		
 	} catch (Exception $e) {		  
@@ -74,13 +64,7 @@ function find_name( $table = null, $name = null ) {
 			$sql = "SELECT * FROM " . $table;		    
 			$result = $database->query($sql);		    		    
 			if ($result->num_rows > 0) {		      
-				$found = $result->fetch_all(MYSQLI_ASSOC);	        	        
-
-				/* Metodo alternativo	        
-				$found = array();		        
-				while ($row = $result->fetch_assoc()) {	          
-				array_push($found, $row);	        
-				} */		    
+				$found = $result->fetch_all(MYSQLI_ASSOC);
 			}		  
 		}		
 	} catch (Exception $e) {		  
@@ -92,8 +76,18 @@ function find_name( $table = null, $name = null ) {
 }
 
 /**	 *  Pesquisa Todos os Registros de uma Tabela	 */	
-function find_all( $table ) {	  
-	return find($table);	
+function find_all( $table ) {	
+	$database = open_database();		
+	$found = null;			
+		  	    		    
+	$sql = "SELECT * FROM " . $table;		    
+	$result = $database->query($sql);		    		    
+	if ($result->num_rows > 0) {
+		$found = $result->fetch_all(MYSQLI_ASSOC);
+	}		  
+	
+	close_database($database);		
+	return $found;
 }
 
 /**	*  Insere um registro no BD	*/
@@ -171,21 +165,24 @@ function remove($table = null, $id = null) {
         $_SESSION['type'] = 'danger';
     }
     close_database($database);
-<<<<<<< HEAD
 }
 
-function InsertClient() {
-	$json = file_get_contents('clientes.json');
-	$obj = json_decode($json);
-    $database = open_database();
-	//mysql_query("DELETE FROM `cliente`");
-	foreach($obj as $item) {
-       $sql = "INSERT INTO `cliente` (Nome, CPF, Endereco, Telefone, Situacao, DataCadastro, DataAtualizacao) VALUES ('".$item->Nome."','".$item->CPF."','".$item->Endereco."','".$item->Telefone."','".$item->Situacao."','".$item->DataCadastro."','".$item->DataAtualizacao."','".$item->EmDebito."')";
-     }
-	$database -> query($sql);
-    close_database($database);
-}
-?>
-=======
-}
->>>>>>> master
+// function InsertClient() {
+    // $database = open_database();
+	// $database -> query("DELETE FROM `cliente`");
+	// $query = '';
+	// $filename = "clientes.json";
+	// $data = file_get_contents($filename); //Read the JSON file in PHP
+	// $array = json_decode($data, true); //Convert JSON String into PHP Array
+	// foreach($array as $row) //Extract the Array Values by using Foreach Loop
+	// {
+		// $query .= "INSERT INTO cliente (IdCliente, Nome, Cpf, Endereco, Telefone, SituacaoCliente, DataCadastro, DataAtualizado, EmDebito) VALUES ('".$row["IdCliente"]."', '".$row["Nome"]."','".$row["Cpf"]."', '".$row["Endereco"]."', '".$row["Telefone"]."', '".$row["SituacaoCliente"]."', '".$row["DataCadastro"]."', '".$row["DataAtualizado"]."','".$row["EmDebito"]."'); ";  // Make Multiple Insert Query 
+	// }
+	// //var_dump ($query);
+	// mysqli_multi_query($database, $query);//Run Mutliple Insert Query
+	// //$database -> query($query);
+    // close_database($database);
+	// return true;
+// }
+
+

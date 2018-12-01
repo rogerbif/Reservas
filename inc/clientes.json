@@ -1,4 +1,4 @@
-{"clientes":[
+[
     {
         "ID": "1",
         "Nome": "Carlos Antonio",
@@ -22,7 +22,7 @@
         "EmDebito": "N"
     },
     {
-        "ID": "",
+        "ID": "3",
         "Nome": "Claudio",
         "CPF": "999999999",
         "Endereco": "teste",
@@ -33,7 +33,7 @@
         "EmDebito": ""
     },
     {
-        "ID": "",
+        "ID": "4",
         "Nome": "Antonio",
         "CPF": "999999999",
         "Endereco": "teste",
@@ -43,4 +43,4 @@
         "DataAtualizacao": "",
         "EmDebito": ""
     }
-]}
+]

@@ -1,3 +1,11 @@
+<?php
+$table = 'quarto';
+require_once('../functions.php');
+require_once('../config.php');	
+require_once(DBAPI);
+//InClient();
+index($table);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,48 +35,36 @@
 		Situacao BOOLEAN NOT NULL,
 		ValorDiaria DECIMAL(5,2),
 		PRIMARY KEY (ID) 	-->
-<div class="container"><a class="btn btn-primary btn-lg btn-sm" href="add.php" role="button">Adicionar</a></div><br />
+<!--<div class="container"><a class="btn btn-primary btn-lg btn-sm" href="add.php" role="button">Adicionar</a></div><br />-->
 <div class="container">
 <table id="bootstrap-table" class="table table-hover">
 	<thead class="text-center">
-		<th class="col-sm-1">Index			<i class="fa fa-sort" aria-hidden="true"></i></th>
-		<th class="col-sm-1">IdQuarto		<i class="fa fa-sort" aria-hidden="true"></i></th>
-		<th class="col-sm-1">Numero			<i class="fa fa-sort" aria-hidden="true"></i></th>
-		<th class="col-sm-1">Situação		<i class="fa fa-sort" aria-hidden="true"></i></th>
-		<th class="col-sm-1">Valor Diaria	<i class="fa fa-sort" aria-hidden="true"></i></th>
-		<th class="col-sm-1">Opções</th>
+		<th>IdQuarto		<i class="fa fa-sort" aria-hidden="true"></i></th>
+		<th >Numero			<i class="fa fa-sort" aria-hidden="true"></i></th>
+		<th >Situação		<i class="fa fa-sort" aria-hidden="true"></i></th>
+		<th >Valor Diaria	<i class="fa fa-sort" aria-hidden="true"></i></th>
+		<th >Opções</th>
 	</thead>
-	<tbody>
-		<?php
-			//fetch data from json
-			$data = file_get_contents('quartos.json');
-			//decode into php array
-			$calup = json_decode($data);		
-		?>
-
-		<?php 
-		$index = 0;
-		if(is_array($calup)){
-			foreach ($calup as $calup): 
-			?>
-			<tr style="display: table-row;">
-				<td style="text-align: center;"> <?php echo $index+1; ?> </td>
-				<td> <?php echo $calup->IdQuarto; ?> </td>
-				<td> <?php echo $calup->Numero; ?> </td>
-				<td> <?php echo $calup->Situacao; ?> </td>
-				<td> <?php echo $calup->ValorDiaria; ?> </td>
-				<td style="text-align: center;">
+	<tbody class="text-center">
+      <?php if ($results): ?>    
+	  <?php foreach ($results as $result): ?>        
+		  <tr>
+			<td><?php echo $result['IdQuarto']; ?></td>
+			<td><?php echo $result['Numero']; ?></td>
+			<td><?php echo $result['Situacao']; ?></td>
+			<td><?php echo $result['ValorDiaria']; ?></td>
+			<td style="text-align: center;">
 				<div class="btn-group btn-group-sm" role="group">
-				<a class="btn btn-primary btn-sm" href="edit.php?index=<?php echo $index; ?>" role="button">Editar</a> 
-				<a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete-modal" data-customer="<?php echo $index+1; ?>" role="button"><i class="fa fa-trash"></i> Excluir</a>
+					<button class="btn btn-primary btn-sm" href="quartos/index.php?IdCliente=<?php echo $result['IdCliente']; ?>" <?php if($result['Situacao']){ ?> disabled <?php }?>  role="button">Check-In</button>
 				</div>
-				</td>
-			</tr>
-			<?php
-			$index++;
-		endforeach;
-		} 
-		?>
+			</td>
+		  </tr>
+      <?php endforeach; ?>    
+	  <?php else: ?>        
+		  <tr>
+			 <td colspan="6">Nenhum registro encontrado.</td>
+		  </tr>
+      <?php endif; ?>
 	</tbody>
 </table>
 </div>
@@ -80,7 +76,6 @@
 	   });
     });
     </script>
-
 <?php include('modal.php'); ?>
 </body>
 </html>

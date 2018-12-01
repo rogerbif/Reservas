@@ -1,11 +1,7 @@
 <?php		
 
 /** O nome do banco de dados*/	
-<<<<<<< HEAD
 define('DB_NAME', 'dbhotel');		
-=======
-define('DB_NAME', 'cuidapet');		
->>>>>>> master
 
 /** Usuário do banco de dados MySQL */	
 define('DB_USER', 'root');		
