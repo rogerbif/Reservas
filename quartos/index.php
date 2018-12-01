@@ -37,36 +37,30 @@ index($table);
 		PRIMARY KEY (ID) 	-->
 <!--<div class="container"><a class="btn btn-primary btn-lg btn-sm" href="add.php" role="button">Adicionar</a></div><br />-->
 <div class="container">
-<table id="bootstrap-table" class="table table-hover">
-	<thead class="text-center">
-		<th>IdQuarto		<i class="fa fa-sort" aria-hidden="true"></i></th>
-		<th >Numero			<i class="fa fa-sort" aria-hidden="true"></i></th>
-		<th >Situação		<i class="fa fa-sort" aria-hidden="true"></i></th>
-		<th >Valor Diaria	<i class="fa fa-sort" aria-hidden="true"></i></th>
-		<th >Opções</th>
-	</thead>
-	<tbody class="text-center">
-      <?php if ($results): ?>    
-	  <?php foreach ($results as $result): ?>        
-		  <tr>
-			<td><?php echo $result['IdQuarto']; ?></td>
-			<td><?php echo $result['Numero']; ?></td>
-			<td><?php echo $result['Situacao']; ?></td>
-			<td><?php echo $result['ValorDiaria']; ?></td>
-			<td style="text-align: center;">
-				<div class="btn-group btn-group-sm" role="group">
-					<button class="btn btn-primary btn-sm" href="quartos/index.php?IdCliente=<?php echo $result['IdCliente']; ?>" <?php if($result['Situacao']){ ?> disabled <?php }?>  role="button">Check-In</button>
+      <?php $i = 0; if ($results): ?>    
+	  <?php foreach ($results as $result): ?>  
+	  	<?php if($i == 0 ){?> <div class="row"> <?php } ?>    
+		  	<div class="col-sm-4">
+				<div class="card" style="width: 18rem;">
+					<div class="card-header">Quarto <?php echo $result['Numero']; ?></div>
+					<img class="card-img-top" src="../quartos/imagens/quarto<?php echo $result['Numero']; ?>.jpg" alt="Card image">
+					<div class="card-body">
+						<h6 class="card-title"><?php echo utf8_encode($result['titulo']); ?></h6>
+						<p class="card-text"><?php echo utf8_encode($result['descricao']); ?></p>
+						<p class="card-text">Valor Diaria: <?php echo $result['ValorDiaria']; ?></p>
+						<p class="card-text">Ocupado: <?php echo $result['Situacao']; ?></p>
+						<div class="btn-group btn-group-sm" role="group">
+							<button class="btn btn-primary btn-sm" href="quartos/index.php?IdCliente=<?php echo $result['IdCliente']; ?>" <?php if($result['Situacao']){ ?> disabled <?php }?>  role="button">Check-In</button>
+						</div>
+					</div>
 				</div>
-			</td>
-		  </tr>
+			</div>
+		<?php $i++; if($i == 3 ){?> </div><br> <?php $i = 0; } ?>
+			<?php //echo $result['IdQuarto']; ?>
       <?php endforeach; ?>    
 	  <?php else: ?>        
-		  <tr>
-			 <td colspan="6">Nenhum registro encontrado.</td>
-		  </tr>
+			 <p colspan="6">Nenhum registro encontrado.</p>
       <?php endif; ?>
-	</tbody>
-</table>
 </div>
     <script type="text/javascript">
     $(document).ready( function () {
