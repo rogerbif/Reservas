@@ -167,6 +167,13 @@ function remove($table = null, $id = null) {
     close_database($database);
 }
 
+	function situquarto($id = null, $data = null) {
+    $database = open_database();
+	$database -> query("UPDATE 'quarto' SET 'Situacao'=".$data."WHERE 'IdQuarto'=".$id);
+    close_database($database);
+	return true;
+}
+
 // function InsertClient() {
     // $database = open_database();
 	// $database -> query("DELETE FROM `cliente`");

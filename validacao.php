@@ -18,6 +18,8 @@ class validacao {
 		$this->msg[8] = "Preencha o campo ".$campo." <br />"; // CAMPO VAZIO
 		$this->msg[9] = "O ".$campo." deve ter no maximo ".$max." caracteres <br />"; // MAXIMO DE CARACTERES
 		$this->msg[10] = "O ".$campo." deve ter no minimo ".$min." caracteres <br />"; // MANIMO DE CARACTERES
+		$this->msg[11] = "O cliente esta com ".$campo." Inativa <br />"; // SITUACAO CLIENTE
+		$this->msg[12] = "O cliente esta em debido <br />"; // CLIENTE EM DEBITO
 		
 		return $this->msg[$num];
 	}
@@ -155,6 +157,20 @@ class validacao {
 			return true;
 		} else {
 			return false;
+		}
+	}
+	
+	// Validar Situação
+	function validarSituacao($situacao) {
+		if ($situacao == 0) {
+			return $this->mensagens(11, 'Situacao', null, null);
+		}
+	}
+		
+	// Validar EmDebito
+	function validarEmdebito($EmDebito) {
+		if ($EmDebito == 1) {
+			return $this->mensagens(12, 'Em Debito', null, null);
 		}
 	}
 }

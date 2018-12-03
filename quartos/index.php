@@ -23,13 +23,13 @@ index($table);
    
 	<title>Sistema de Reservas - Seleção de Quartos</title>
 </head>
+<?php include(HEADER_TEMPLATE); ?>	
 <body>
-
 <div class="container">
+	<hr class="my-4">
   <h3>Sistema de Reservas - Seleção de Quartos</h3>
   <hr class="my-4">
 </div>
-<br />
 <!--    ID int NOT NULL AUTO_INCREMENT,
 		Numero int NOT NULL,
 		Situacao BOOLEAN NOT NULL,
@@ -50,7 +50,12 @@ index($table);
 						<p class="card-text">Valor Diaria: <?php echo $result['ValorDiaria']; ?></p>
 						<p class="card-text">Ocupado: <?php echo $result['Situacao']; ?></p>
 						<div class="btn-group btn-group-sm" role="group">
-							<button class="btn btn-primary btn-sm" href="quartos/index.php?IdCliente=<?php echo $result['IdCliente']; ?>" <?php if($result['Situacao']){ ?> disabled <?php }?>  role="button">Check-In</button>
+							<?php if($result['Situacao'])
+							{ ?> 
+								<button class="btn btn-primary btn-sm" href="#" disabled role="button">Check-In</button>
+							<?php } else { ?>
+								<a class="btn btn-primary btn-sm" href="../reserva/index.php?IdCliente=<?php echo $_GET['IdCliente']; ?>&IdQuarto=<?php echo $result['IdQuarto']; ?>&reserva=1&checkout=" role="button">Check-In</a>
+							<?php } ?>
 						</div>
 					</div>
 				</div>
@@ -71,5 +76,4 @@ index($table);
     });
     </script>
 <?php include('modal.php'); ?>
-</body>
-</html>
+<?php include(FOOTER_TEMPLATE); ?>

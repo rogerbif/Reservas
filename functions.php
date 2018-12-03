@@ -62,6 +62,59 @@ function delete($id = null) {
     header('location: index.php');
 }
 
-// function InClient() {			
-	// InsertClient();
-// }
+function reserva() {
+	if (isset($_GET['IdCliente'])) {
+	$idcliente = $_GET['IdCliente'];
+	$idquarto = $_GET['IdQuarto'];
+	//Reserva `ID`, `IDCliente`, `IDQuarto`, `DataReserva`, `DataCheckin`, `DataCheckout`, `Situacao`
+	$today = date_create('now', new DateTimeZone('America/Sao_Paulo'));
+	$result['DataReserva'] = $result['DataCheckin'] = $today -> format("Y-m-d H:i:s");
+	$result['IDCliente'] = $idcliente;
+	$result['IDQuarto'] = $idquarto;
+	$result['Situacao'] = 1;
+	save('reserva', $result);
+	situquarto($idquarto, 1);
+	}
+}
+
+function reservaquarto() {
+	if (isset($_GET['IdQuarto'])) {
+	$IdQuarto = $_GET['IdQuarto'];
+	situquarto($IdQuarto, 1);
+	// $idcliente = $_GET['IdCliente'];
+	// $idquarto = $_GET['IdQuarto'];
+	// //`quarto`(`IdQuarto`, `Numero`, `Situacao`, `ValorDiaria`, `titulo`, `descricao`)
+	// $result['Situacao'] = 1;
+	// //var_dump($result);
+	// update('quarto', $idquarto, $result);
+	}
+}
+
+function checkout() {
+	if (isset($_GET['IdReserva'])) {
+	$IdQuarto = $_GET['IdQuarto'];
+	$IdReserva = $_GET['IdReserva'];
+	//Reserva `ID`, `IDCliente`, `IDQuarto`, `DataReserva`, `DataCheckin`, `DataCheckout`, `Situacao`
+	$today = date_create('now', new DateTimeZone('America/Sao_Paulo'));
+	$result['DataCheckout'] = $today -> format("Y-m-d H:i:s");
+	$result['Situacao'] = 0;
+	//var_dump($result);
+	update('reserva', $IdReserva, $result);
+	//header('location: ../pagseguro/checkout.php?ID='.$IdReserva);
+	situquarto($IdQuarto, 0);
+	}
+}
+
+function checkoutquarto() {
+	if (isset($_GET['IdQuarto'])) {
+	$IdQuarto = $_GET['IdQuarto'];
+	var_dump($IdQuarto);
+	situquarto($IdQuarto, 1);
+	// //`quarto`(`IdQuarto`, `Numero`, `Situacao`, `ValorDiaria`, `titulo`, `descricao`)
+	// $result['Situacao'] = 0;
+	// $result['IdQuarto'] = $IdQuarto;
+	// //var_dump($result);
+	// update('quarto', $IdQuarto, $result);
+	// //header('location: ../pagseguro/checkout.php?ID='.$IdReserva);
+	}
+}

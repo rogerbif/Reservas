@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 02-Dez-2018 às 22:32
--- Versão do servidor: 10.1.36-MariaDB
--- versão do PHP: 7.2.11
+-- Generation Time: 03-Dez-2018 às 04:10
+-- Versão do servidor: 10.1.34-MariaDB
+-- PHP Version: 7.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -45,23 +45,9 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`IdCliente`, `Cpf`, `Nome`, `Endereco`, `Telefone`, `SituacaoCliente`, `DataCadastro`, `DataAtualizado`, `EmDebito`) VALUES
-(1, '03175264094', 'thales', '', '97673063', 0, '2018-11-10 23:00:00', '2018-11-10 23:00:00', 0),
-(2, '65413597152', 'lucas matos ', 'sepe 350', '987535682', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0),
-(3, '6231485620', 'mathues', 'albertos bins ', '98621456', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0),
-(4, '56482013569', 'gleicy barbosa', 'algusto factun 365', '975123569', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0),
-(5, '02147564921', 'alicinario', 'rua sepe tiaraju', '998793256', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `clientereserva`
---
-
-CREATE TABLE `clientereserva` (
-  `id` int(11) NOT NULL,
-  `idcliente` int(11) NOT NULL,
-  `idquarto` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+(1, '11111111111', 'Teste 01 ', 'rua teste', '111111111', 1, '2018-12-02 09:39:42', '2018-12-02 09:39:42', 0),
+(2, '22222222222', 'Teste 02', 'Rua Teste 2', '222222222', 1, '2018-12-02 09:40:15', '2018-12-02 09:40:15', 0),
+(3, '33333333333', 'Teste 03 ', 'Rua Teste 3', '33333333', 1, '2018-12-02 09:40:54', '2018-12-02 09:40:54', 0);
 
 -- --------------------------------------------------------
 
@@ -113,6 +99,16 @@ CREATE TABLE `reserva` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Extraindo dados da tabela `reserva`
+--
+
+INSERT INTO `reserva` (`ID`, `IDCliente`, `IDQuarto`, `DataReserva`, `DataCheckin`, `DataCheckout`, `Situacao`) VALUES
+(1, 1, 2, '2018-12-02 23:16:59', '2018-12-02 23:16:59', '2018-12-02 23:37:15', 0),
+(2, 1, 3, '2018-12-02 23:31:43', '2018-12-02 23:31:43', '2018-12-02 23:31:47', 0),
+(3, 1, 3, '2018-12-02 23:40:45', '2018-12-02 23:40:45', '2018-12-02 23:40:52', 0),
+(4, 1, 3, '2018-12-03 00:48:26', '2018-12-03 00:48:26', '2018-12-03 01:06:03', 0);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -121,13 +117,6 @@ CREATE TABLE `reserva` (
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`IdCliente`);
-
---
--- Indexes for table `clientereserva`
---
-ALTER TABLE `clientereserva`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `idquarto` (`idquarto`);
 
 --
 -- Indexes for table `quarto`
@@ -147,12 +136,6 @@ ALTER TABLE `reserva`
 --
 
 --
--- AUTO_INCREMENT for table `clientereserva`
---
-ALTER TABLE `clientereserva`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `quarto`
 --
 ALTER TABLE `quarto`
@@ -162,7 +145,7 @@ ALTER TABLE `quarto`
 -- AUTO_INCREMENT for table `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
