@@ -13,7 +13,22 @@
 	$array = json_decode($data, true); //Convert JSON String into PHP Array
 	foreach($array as $row) //Extract the Array Values by using Foreach Loop
 	{
-		$query .= "INSERT INTO cliente (IdCliente, Nome, Cpf, Endereco, Telefone, SituacaoCliente, DataCadastro, DataAtualizado, EmDebito) VALUES ('".$row["IdCliente"]."', '".$row["Nome"]."','".$row["Cpf"]."', '".$row["Endereco"]."', '".$row["Telefone"]."', '".$row["SituacaoCliente"]."', '".$row["DataCadastro"]."', '".$row["DataAtualizado"]."','".$row["EmDebito"]."'); ";  // Make Multiple Insert Query 
+		if( $row["SituacaoCliente"] == 'ativo')
+		{
+			$row["SituacaoCliente"] = 1;
+		}
+		
+		if( $row["EmDebito"] == 'N' || $row["EmDebito"] == 'n')
+		{
+			$row["EmDebito"] = 0;
+		}
+		else if($row["EmDebito"] == 'S' || $row["EmDebito"] == 's')
+		{
+			$row["EmDebito"] = 1;
+		}
+		
+		$query .= "INSERT INTO cliente (IdCliente, Nome, Cpf, Endereco, Telefone, SituacaoCliente, DataCadastro, DataAtualizado, EmDebito) VALUES 
+				('".$row["IdCliente"]."', '".$row["Nome"]."','".$row["Cpf"]."', '".$row["Endereco"]."', '".$row["Telefone"]."', '".$row["SituacaoCliente"]."', '".$row["DataCadastro"]."', '".$row["DataAtualizado"]."','".$row["EmDebito"]."'); ";  // Make Multiple Insert Query 
 	}
 	//var_dump ($query);
 	mysqli_multi_query($database, $query);//Run Mutliple Insert Query
