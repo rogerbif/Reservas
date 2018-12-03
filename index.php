@@ -6,6 +6,27 @@ require_once("validacao.php");
 require_once(DBAPI);
 //InClient();
 index($table);
+
+function mask($val, $mask)
+{
+ $maskared = '';
+ $k = 0;
+ for($i = 0; $i<=strlen($mask)-1; $i++)
+ {
+ if($mask[$i] == '#')
+ {
+ if(isset($val[$k]))
+ $maskared .= $val[$k++];
+ }
+ else
+ {
+ if(isset($mask[$i]))
+ $maskared .= $mask[$i];
+ }
+ }
+ return $maskared;
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,8 +55,8 @@ index($table);
 <div class="container">
 	<!--<a class="btn btn-primary btn-lg btn-sm" href="add.php" role="button">Adicionar</a>-->
 	<form method="POST" action="processa.php" enctype="multipart/form-data">
-		<input type="file" name="arquivo">
-		<input type="submit" value="Importar">
+		<input id="arquivo" type="file" name="arquivo">
+		<input id="Importa" type="submit" value="Importar">
 	</form>
 </div>
 <br />
@@ -72,19 +93,21 @@ index($table);
 					$temp = $msg;
 					$msg = "Favor verifique o cadastro do Cliente ".$result['Nome']." ID: ".$result['IdCliente']."<br/>";
 					$msg .= $temp;
-					}
-				
+				}
+								
 			?>
-
+			
+	
 			<td><?php echo $result['IdCliente']; ?></td>
 			<td><?php echo $result['Nome']; ?></td>
-			<td><?php echo $result['Cpf']; ?></td>
+			<td><?php echo mask($result['Cpf'],'###.###.###-##'); ?></td>
 			<td><?php echo $result['Endereco']; ?></td>
-			<td><?php echo $result['Telefone']; ?></td>
-			<td><?php echo $result['SituacaoCliente']; ?></td>
+			<td><?php echo mask($result['Telefone'], '(##)####-####'); ?></td>
+			<td><?php echo $result['SituacaoCliente'] == 1 ? 'ATIVO' : 'Não Ativo'; ?></td>
 			<td><?php echo $result['DataCadastro']; ?></td>
 			<td><?php echo $result['DataAtualizado']; ?></td>
-			<td><?php echo $result['EmDebito']; ?></td>
+			<td><?php echo $result['EmDebito'] == 1 ? 'SIM' : 'NÃO'; ?></td>
+			
 			<td style="text-align: center;">
 				<?php
 				  if ($msg == "") 
@@ -143,6 +166,17 @@ index($table);
 		    showSearchForm: 1,
             showEntriesPerPageField: 1
 	   });
+	   
     });
+	
+		$('#Importa').click(function() {
+		  
+		  if($('#arquivo').val() == '')
+		  {
+			  alert('Selecione um Arquivo .JSON');
+			  return false
+		  }
+		  
+	   });
     </script>
 <?php include(FOOTER_TEMPLATE); ?>
